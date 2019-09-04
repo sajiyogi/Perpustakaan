@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
-        <span class="brand-text font-weight-light">Project</span>
+        <span class="brand-text font-weight-light">Admin Perpustakaan</span>
     </a>
 
     <!-- Sidebar -->
@@ -84,6 +84,18 @@
                         </a>
                     </li>
                 @endcan
+                @can('rule_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.rules.index") }}" class="nav-link {{ request()->is('admin/rules') || request()->is('admin/rules/*') ? 'active' : '' }}">
+                            <i class="fa fa-bullhorn">
+
+                            </i>
+                            <p>
+                                <span>{{ trans('global.rule.title') }}</span>
+                            </p>
+                        </a>
+                    </li>
+                 @endcan
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

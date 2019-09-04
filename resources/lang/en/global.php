@@ -352,5 +352,24 @@ return [
             'deleted_at'         => 'Deleted at',
             'deleted_at_helper'  => '',
         ],
+        ],
+
+        'rule'                              => [
+        'title'          => 'Rules',
+        'title_singular' => 'Rule',
+        'fields'         => [
+            'id'                 => 'ID',
+            'id_helper'          => '',
+            'description'        => 'Description',
+            'description_helper' => '',
+            'pengesah'              => 'Pengesah',
+            'pengesah_helper'       => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
     ],
 ];

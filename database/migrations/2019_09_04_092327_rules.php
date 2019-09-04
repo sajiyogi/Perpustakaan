@@ -10,7 +10,6 @@ class Rules extends Migration
     {
         Schema::create('Rules', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('judul');
             $table->longText('description')->nullable();
             $table->string('pengesah');
             $table->timestamps();

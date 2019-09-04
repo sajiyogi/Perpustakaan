@@ -3,34 +3,27 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.show') }} {{ trans('global.product.title') }}
+        {{ trans('global.show') }} {{ trans('global.rule.title') }}
     </div>
 
     <div class="card-body">
         <table class="table table-bordered table-striped">
             <tbody>
+               
                 <tr>
                     <th>
-                        {{ trans('global.product.fields.name') }}
+                        {{ trans('global.rule.fields.description') }}
                     </th>
                     <td>
-                        {{ $product->name }}
+                        {!! $rule->description !!}
                     </td>
                 </tr>
                 <tr>
                     <th>
-                        {{ trans('global.product.fields.description') }}
+                        {{ trans('global.rule.fields.pengesah') }}
                     </th>
                     <td>
-                        {!! $product->description !!}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{ trans('global.product.fields.price') }}
-                    </th>
-                    <td>
-                        ${{ $product->price }}
+                        {{ $rule->pengesah }}
                     </td>
                 </tr>
             </tbody>

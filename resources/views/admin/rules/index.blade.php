@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-@can('product_create')
+@can('rule_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.products.create") }}">
-                {{ trans('global.add') }} {{ trans('global.product.title_singular') }}
+            <a class="btn btn-success" href="{{ route("admin.rules.create") }}">
+                {{ trans('global.add') }} {{ trans('global.rule.title_singular') }}
             </a>
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('global.product.title_singular') }} {{ trans('global.list') }}
+        {{ trans('global.rule.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
@@ -23,13 +23,10 @@
 
                         </th>
                         <th>
-                            {{ trans('global.product.fields.name') }}
+                            {{ trans('global.rule.fields.description') }}
                         </th>
                         <th>
-                            {{ trans('global.product.fields.description') }}
-                        </th>
-                        <th>
-                            {{ trans('global.product.fields.price') }}
+                            {{ trans('global.rule.fields.pengesah') }}
                         </th>
                         <th>
                             &nbsp;
@@ -37,33 +34,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($products as $key => $product)
-                        <tr data-entry-id="{{ $product->id }}">
+                    @foreach($rules as $key => $rule)
+                        <tr data-entry-id="{{ $rule->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $product->name ?? '' }}
+                                {{ strip_tags($rule->description)  ?? '' }}
                             </td>
                             <td>
-                                {{ $product->description ?? '' }}
+                                {{ $rule->pengesah ?? '' }}
                             </td>
                             <td>
-                                {{ $product->price ?? '' }}
-                            </td>
-                            <td>
-                                @can('product_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.products.show', $product->id) }}">
+                                @can('rule_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.rules.show', $rule->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
-                                @can('product_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.products.edit', $product->id) }}">
+                                @can('rule_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.rules.edit', $rule->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
-                                @can('product_delete')
-                                    <form action="{{ route('admin.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('rule_delete')
+                                    <form action="{{ route('admin.rules.destroy', $rule->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -86,7 +80,7 @@
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.products.massDestroy') }}",
+    url: "{{ route('admin.rules.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -110,7 +104,7 @@
     }
   }
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('product_delete')
+@can('rule_delete')
   dtButtons.push(deleteButton)
 @endcan
 

@@ -3,46 +3,35 @@
 
 <div class="card">
     <div class="card-header">
-        {{ trans('global.create') }} {{ trans('global.product.title_singular') }}
+        {{ trans('global.create') }} {{ trans('global.rule.title_singular') }}
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.products.store") }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route("admin.rules.store") }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                <label for="name">{{ trans('global.product.fields.name') }}*</label>
-                <input type="text" id="name" name="name" class="form-control" value="{{ old('name', isset($product) ? $product->name : '') }}">
-                @if($errors->has('name'))
-                    <p class="help-block">
-                        {{ $errors->first('name') }}
-                    </p>
-                @endif
-                <p class="helper-block">
-                    {{ trans('global.product.fields.name_helper') }}
-                </p>
-            </div>
+            
             <div class="form-group {{ $errors->has('description') ? 'has-error' : '' }}">
-                <label for="description">{{ trans('global.product.fields.description') }}</label>
-                <textarea id="description" name="description" class="form-control ">{{ old('description', isset($product) ? $product->description : '') }}</textarea>
+                <label for="description">{{ trans('global.rule.fields.description') }}</label>
+                <textarea id="konten" name="description" class="form-control ">{{ old('description', isset($rule) ? $rule->description : '') }}</textarea>
                 @if($errors->has('description'))
                     <p class="help-block">
                         {{ $errors->first('description') }}
                     </p>
                 @endif
                 <p class="helper-block">
-                    {{ trans('global.product.fields.description_helper') }}
+                    {{ trans('global.rule.fields.description_helper') }}
                 </p>
             </div>
-            <div class="form-group {{ $errors->has('price') ? 'has-error' : '' }}">
-                <label for="price">{{ trans('global.product.fields.price') }}</label>
-                <input type="number" id="price" name="price" class="form-control" value="{{ old('price', isset($product) ? $product->price : '') }}" step="0.01">
-                @if($errors->has('price'))
+            <div class="form-group {{ $errors->has('pengesah') ? 'has-error' : '' }}">
+                <label for="pengesah">{{ trans('global.rule.fields.pengesah') }}*</label>
+                <input type="text" id="pengesah" name="pengesah" class="form-control" value="{{ old('pengesah', isset($rule) ? $rule->pengesah : '') }}">
+                @if($errors->has('pengesah'))
                     <p class="help-block">
-                        {{ $errors->first('price') }}
+                        {{ $errors->first('pengesah') }}
                     </p>
                 @endif
                 <p class="helper-block">
-                    {{ trans('global.product.fields.price_helper') }}
+                    {{ trans('global.rule.fields.pengesah_helper') }}
                 </p>
             </div>
             <div>
@@ -51,4 +40,12 @@
         </form>
     </div>
 </div>
+<script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+<script>
+  var konten = document.getElementById("konten");
+    CKEDITOR.replace(konten,{
+    language:'en-gb'
+  });
+  CKEDITOR.config.allowedContent = true;
+</script>
 @endsection
