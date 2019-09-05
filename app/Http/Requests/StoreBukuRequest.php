@@ -2,20 +2,20 @@
 
 namespace App\Http\Requests;
 
-use App\Product;
+use App\Buku;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRuleRequest extends FormRequest
+class StoreBukuRequest extends FormRequest
 {
     public function authorize()
     {
-        return \Gate::allows('product_edit');
+        return \Gate::allows('buku_create');
     }
 
-    public function bukus()
+    public function buku()
     {
         return [
-           'judul' => [
+            'judul' => [
                 'required',
             ],
             'image' => [
@@ -33,6 +33,7 @@ class UpdateRuleRequest extends FormRequest
             'jumlah' => [
                 'required',
             ],
+
         ];
     }
 }

@@ -2,20 +2,20 @@
 
 namespace App\Http\Requests;
 
-use App\Product;
+use App\Buku;
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreRuleRequest extends FormRequest
+class UpdateRuleRequest extends FormRequest
 {
     public function authorize()
     {
-        return \Gate::allows('rule_create');
+        return \Gate::allows('buku_edit');
     }
 
-    public function rules()
+    public function bukus()
     {
         return [
-            'description' => [
+           'description' => [
                 'required',
             ],
             'pengesah' => [

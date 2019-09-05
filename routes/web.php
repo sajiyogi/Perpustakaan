@@ -27,4 +27,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('rules/destroy', 'RulesController@massDestroy')->name('rules.massDestroy');
 
     Route::resource('rules', 'RulesController');
+
+    Route::resource('buku', 'BukuController');
+    Route::delete('buku/destroy', 'BukuController@massDestroy')->name('buku.massDestroy');
 });

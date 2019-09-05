@@ -96,6 +96,18 @@
                         </a>
                     </li>
                  @endcan
+                 @can('buku_access')
+                    <li class="nav-item">
+                        <a href="{{ route("admin.buku.index") }}" class="nav-link {{ request()->is('admin/buku') || request()->is('admin/buku/*') ? 'active' : '' }}">
+                            <i class="fa fa-bullhorn">
+
+                            </i>
+                            <p>
+                                <span>{{ trans('global.buku.title') }}</span>
+                            </p>
+                        </a>
+                    </li>
+                 @endcan
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
                         <p>

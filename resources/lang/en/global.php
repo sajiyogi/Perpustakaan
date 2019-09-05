@@ -354,7 +354,7 @@ return [
         ],
         ],
 
-        'rule'                              => [
+        'rule'           => [
         'title'          => 'Rules',
         'title_singular' => 'Rule',
         'fields'         => [
@@ -364,6 +364,35 @@ return [
             'description_helper' => '',
             'pengesah'              => 'Pengesah',
             'pengesah_helper'       => '',
+            'created_at'         => 'Created At',
+            'created_at_helper'  => '',
+            'updated_at'         => 'Updated At',
+            'updated_at_helper'  => '',
+            'deleted_at'         => 'Deleted at',
+            'deleted_at_helper'  => '',
+        ],
+        ],
+
+    
+
+        'buku'           => [
+        'title'          => 'Bukus',
+        'title_singular' => 'Buku',
+        'fields'         => [
+            'id'          => 'ID',
+            'id_helper'          => '',
+            'judul'        => 'Judul',
+            'judul_helper' => '',
+            'image'         => 'Image',
+            'image_helper' => '',
+            'id_kategori' => 'ID kategori',
+            'id_kategori_helper' => '',
+            'pengarang' => 'Pengarang',
+            'pengarang_helper' => '',
+            'penerbit' => 'Penerbit',
+            'penerbit_helper' => '',
+            'jumlah' => 'Jumlah',
+            'jumlah_helper' => '',
             'created_at'         => 'Created At',
             'created_at_helper'  => '',
             'updated_at'         => 'Updated At',
