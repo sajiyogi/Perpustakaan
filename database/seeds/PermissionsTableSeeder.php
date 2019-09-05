@@ -159,7 +159,7 @@ class PermissionsTableSeeder extends Seeder
             ],
             [
                 'id'         => '26',
-                'title'      => 'rule_acces',
+                'title'      => 'rule_access',
                 'created_at' => '2019-04-15 19:14:42',
                 'updated_at' => '2019-04-15 19:14:42',
             ],
