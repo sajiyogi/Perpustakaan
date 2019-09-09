@@ -12,7 +12,7 @@ class StoreProductRequest extends FormRequest
         return \Gate::allows('product_create');
     }
 
-    public function ProductS()
+    public function Products()
     {
         return [
             'name' => [

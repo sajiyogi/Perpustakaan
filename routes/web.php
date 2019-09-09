@@ -27,6 +27,17 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('rules/destroy', 'RulesController@massDestroy')->name('rules.massDestroy');
 
     Route::resource('rules', 'RulesController');
+    Route::post('buku', function(Request $request) {
+    $buku = $request->all();
+        return Buku::create([
+            'judul' => $buku['judul'],
+            'image' => $buku['image'],
+            'pengarang' => $buku['pengarang'],
+            'penerbit' => $buku['penerbit'],
+            'jumlah' => $buku['jumlah'],
+        ]);
+});
+
 
     Route::resource('buku', 'BukuController');
     Route::delete('buku/destroy', 'BukuController@massDestroy')->name('buku.massDestroy');

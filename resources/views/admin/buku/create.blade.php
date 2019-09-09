@@ -12,7 +12,7 @@
             
             <div class="form-group {{ $errors->has('judul') ? 'has-error' : '' }}">
                 <label for="judul">{{ trans('global.buku.fields.judul') }}*</label>
-                <input type="text" id="judul" name="judul" class="form-control" value="{{ old('judul', isset($buku) ? $buku->pengesah : '') }}">
+                <input type="text" id="judul" name="judul" class="form-control" value="{{ old('judul', isset($buku) ? $buku->judul : '') }}">
                 @if($errors->has('judul'))
                     <p class="help-block">
                         {{ $errors->first('judul') }}
@@ -48,7 +48,7 @@
             </div>
             <div class="form-group {{ $errors->has('jumlah') ? 'has-error' : '' }}">
                 <label for="jumlah">{{ trans('global.buku.fields.jumlah') }}*</label>
-                <input type="text" id="jumlah" name="pengarang" class="form-control" value="{{ old('jumlah', isset($buku) ? $buku->jumlah : '') }}">
+                <input type="number" id="jumlah" name="jumlah" class="form-control" value="{{ old('jumlah', isset($buku) ? $buku->jumlah : '') }}">
                 @if($errors->has('jumlah'))
                     <p class="help-block">
                         {{ $errors->first('jumlah') }}
@@ -61,8 +61,7 @@
             
             <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }} ">
              <label for="image">{{ trans('global.buku.fields.image') }}*</label>
-               
-                    <input id="image" type="file" class="form-control" name="image" value="{{ old('image'), isset($buku) ? $buku->image : '' }}">
+               <input id="image" type="file" class="form-control" name="image" value="{{ old('image'), isset($buku) ? $buku->image : '' }}">
 
                     @if ($errors->has('image'))
                          <p class="help-block">

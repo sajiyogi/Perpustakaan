@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\Request;
 use App\Buku;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -12,16 +13,13 @@ class StoreBukuRequest extends FormRequest
         return \Gate::allows('buku_create');
     }
 
-    public function buku()
+    public function rules()
     {
         return [
             'judul' => [
                 'required',
             ],
             'image' => [
-                'required',
-            ],
-            'id_kategori' => [
                 'required',
             ],
             'pengarang' => [
