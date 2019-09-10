@@ -12,7 +12,7 @@ class UpdateRuleRequest extends FormRequest
         return \Gate::allows('product_edit');
     }
 
-    public function bukus()
+    public function Rule()
     {
         return [
            'judul' => [

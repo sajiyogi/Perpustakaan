@@ -13,15 +13,18 @@ class BukuApiController extends Controller
     {
         $bukus = Buku::all();
 
+
         return $bukus;
     }
 
     public function store(StoreBukuRequest $request)
     {
-        return Buku::create($request->all());
+        
+       $buku = Buku::save();
+       return response()->json($buku, 201);
     }
 
-    public function update(UpdateBukuRequest $request, Buku $rule)
+    public function update(UpdateBukuRequest $request, Buku $buku)
     {
         return $buku->update($request->all());
     }
@@ -31,7 +34,7 @@ class BukuApiController extends Controller
         return $buku;
     }
 
-    public function destroy(Rule $buku)
+    public function destroy(Buku $buku)
     {
         return $buku->delete();
     }

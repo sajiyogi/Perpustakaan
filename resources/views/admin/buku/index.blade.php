@@ -48,8 +48,9 @@
 
                             </td>
                             <td>
-                               <img src="{{URL::to('/')}}/uploadbuku/{{ $key->image}}" class="img-thumbnail" width="75" />
+                               <img src="{{asset ('asset/uploadcover/'.$buku->image ) }} " alt="" style="width: 200px; height: 200px;" />
                             </td>
+                        
                             <td>
                                 {{ $buku->judul  ?? '' }}
                             </td>
@@ -74,8 +75,7 @@
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
-                                @can('
-                                buku_delete')
+                                @can('buku_delete')
                                     <form action="{{ route('admin.buku.destroy', $buku->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -97,7 +97,11 @@
 <script>
     $(function () {
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
-  let deleteButton = {text: deleteButtonTrans,url: "{{ route('admin.buku.massDestroy') }}",className: 'btn-danger', action: function (e, dt, node, config) {
+  let deleteButton = {
+    text: deleteButtonTrans,
+    url: "{{ route('admin.buku.massDestroy') }}",
+    className: 'btn-danger',
+    action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
           return $(entry).data('entry-id')
       });

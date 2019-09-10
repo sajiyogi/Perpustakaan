@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Http\Requests\Request;
 use App\Buku;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -19,9 +20,6 @@ class StoreBukuRequest extends FormRequest
                 'required',
             ],
             'image' => [
-                'required',
-            ],
-            'id_kategori' => [
                 'required',
             ],
             'pengarang' => [

@@ -8,6 +8,9 @@ use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
 use App\Buku;
 
+
+
+
 class BukuController extends Controller
 {
     
@@ -22,20 +25,42 @@ class BukuController extends Controller
 
     public function create()
     {
-        abort_unless(\Gate::allows('buku_create'), 403);
+        abort_unless(\Gate::allows('buku_create'), 403); 
 
         return view('admin.buku.create');
     }
 
-    public function store(StorebukuRequest $request)
+    public function store(StoreBukuRequest $request)
     {
         abort_unless(\Gate::allows('buku_create'), 403);
 
-        $buku = Buku::create($request->all());
+        if ($request->hasFile('image')) {
+            $name= $this->uploadcover($request);
+            $buku = Buku::create([
+            'judul' => $request->judul,
+            'image' => $name,
+            'pengarang' => $request->pengarang,
+            'penerbit' => $request->penerbit,
+            'jumlah' => $request->jumlah,
+            ]);
+        }
 
         return redirect()->route('admin.buku.index');
     }
+    private function uploadcover(StoreBukuRequest $request){
+        $name = $request->file('image')->getClientOriginalName();
+        $ext = $request->file('image')->getClientOriginalExtension();
+        if ($request->file('image')->isValid()) {
 
+        $imagename =md5(date('YmdHis')).".$ext";
+        $uploadpath = 'asset/uploadcover';
+        $request->file('image')->move($uploadpath, $imagename);
+
+        return $imagename;
+        }
+        return false;
+    }
+   
     public function edit(buku $buku)
     {
         abort_unless(\Gate::allows('buku_edit'), 403);
@@ -59,7 +84,7 @@ class BukuController extends Controller
         return view('admin.buku.show', compact('buku'));
     }
 
-    public function destroy(buku $buku)
+    public function destroy(Buku $buku)
     {
         abort_unless(\Gate::allows('buku_delete'), 403);
 

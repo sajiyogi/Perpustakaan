@@ -99,7 +99,7 @@
                  @can('buku_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.buku.index") }}" class="nav-link {{ request()->is('admin/buku') || request()->is('admin/buku/*') ? 'active' : '' }}">
-                            <i class="fa fa-bullhorn">
+                            <i class="fa fa-book">
 
                             </i>
                             <p>
