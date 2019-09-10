@@ -125,6 +125,14 @@
                             <p><span>Categories</span></p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{ route('admin.berita.index') }}" class="nav-link">
+                             <i class="far fa-newspaper"></i>
+                            </i>
+                            <p><span>Berita</span></p>
+                        </a>
+                    </li>
                     
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
