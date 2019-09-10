@@ -5,7 +5,7 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.kategoribuku.create') }}"> Add Data Buku
+            <a class="btn btn-success" href="{{ route('admin.kategoribuku.create') }}"> Tambah Kategori Buku
             </a>
         </div>
     </div>
@@ -25,7 +25,7 @@
                         </th>
                         <th>Id Kategori</th>
                         <th>Nama Kategori</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,12 +38,12 @@
                             <td>{{ $row->nama }}</td>
                             <td>
                                 <div class="btn-group">
-                                <a class="btn btn-warning" href="{{route('admin.kategoribuku.edit', $row->id)}}">Edit</a>
+                                <a class="btn btn-warning" href="{{route('admin.kategoribuku.edit', $row->id)}}">Ubah</a>
                                 <form method="POST" action="{{route('admin.kategoribuku.destroy', $row->id) }}"  onclick="return confirm('Are You Sure ? ')">
                                  @csrf
                                 @method('DELETE')
 
-                                <button type="submit" class="btn btn-danger">Delete</button>
+                                <button type="submit" class="btn btn-danger">Hapus</button>
                                     </form>
                                 </div>
                             </td>
