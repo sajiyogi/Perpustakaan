@@ -72,6 +72,35 @@
                         </ul>
                     </li>
                 @endcan
+
+                
+                    <li class="nav-item has-treeview {{ request()->is('admin/struktur*') ? 'menu-open' : '' }} ">
+                        <a class="nav-link nav-dropdown-toggle">
+                            <i class="fas fa-user">
+
+                            </i>
+                            <p>
+                                <span>Profil</span>
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                           
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.struktur.index") }}" class="nav-link {{ request()->is('admin/struktur') || request()->is('admin/struktur/*') ? 'active' : '' }}">
+                                        <i class="fas fa-users">
+
+                                        </i>
+                                        <p>
+                                            <span>Struktur Organisasi</span>
+                                        </p>
+                                    </a>
+                                </li>
+                        
+                            
+                        </ul>
+                    </li>
+            
                 @can('product_access')
                     <li class="nav-item">
                         <a href="{{ route("admin.products.index") }}" class="nav-link {{ request()->is('admin/products') || request()->is('admin/products/*') ? 'active' : '' }}">
@@ -108,6 +137,7 @@
                         </a>
                     </li>
                  @endcan
+
                     <li class="nav-item">
                         <a href="{{ route('admin.kategoribuku.index') }}" class="nav-link">
                             <i class="fas fa-cogs">
