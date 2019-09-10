@@ -108,21 +108,11 @@
                         </a>
                     </li>
                  @endcan
-                    <!-- <li class="nav-item">
-                        <a href="{{ route('admin.book.index') }}" class="nav-link">
-                            <i class="fa fa-bullhorn">
-
-                            </i>
-                            <p>
-                                <span>Books</span>
-                            </p>
-                        </a>
-                    </li> -->
                     <li class="nav-item">
                         <a href="{{ route('admin.kategoribuku.index') }}" class="nav-link">
                             <i class="fas fa-cogs">
                             </i>
-                            <p><span>Categories</span></p>
+                            <p><span>Kategori Buku</span></p>
                         </a>
                     </li>
 
