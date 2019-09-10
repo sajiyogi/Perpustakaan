@@ -12,7 +12,7 @@ class StoreBukuRequest extends FormRequest
         return \Gate::allows('buku_create');
     }
 
-    public function buku()
+    public function rules()
     {
         return [
             'judul' => [
