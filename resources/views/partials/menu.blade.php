@@ -96,6 +96,28 @@
                                         </p>
                                     </a>
                                 </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.sejarah.index") }}" class="nav-link {{ request()->is('admin/sejarah') || request()->is('admin/sejarah/*') ? 'active' : '' }}">
+                                        <i class="fas fa-history">
+
+                                        </i>
+                                        <p>
+                                            <span>Sejarah</span>
+                                        </p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.fasilitas.index") }}" class="nav-link {{ request()->is('admin/fasilitas') || request()->is('admin/fasilitas/*') ? 'active' : '' }}">
+                                        <i class="fas fa-cube">
+
+                                        </i>
+                                        <p>
+                                            <span>Fasilitas</span>
+                                        </p>
+                                    </a>
+                                </li>
                         
                             
                         </ul>
@@ -137,6 +159,14 @@
                         </a>
                     </li>
                  @endcan
+
+                 <li class="nav-item">
+                        <a href="{{ route('admin.ebook.index') }}" class="nav-link {{ request()->is('admin/ebook') || request()->is('admin/ebook/*') ? 'active' : '' }}">
+                            <i class="fas fa-book">
+                            </i>
+                            <p><span>Ebook</span></p>
+                        </a>
+                    </li>
 
                     <li class="nav-item">
                         <a href="{{ route('admin.kategoribuku.index') }}" class="nav-link">

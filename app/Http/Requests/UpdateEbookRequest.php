@@ -2,23 +2,26 @@
 
 namespace App\Http\Requests;
 
-use App\Struktur;
+use App\Ebook;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateStrukturRequest extends FormRequest
+class UpdateEbookRequest extends FormRequest
 {
     public function authorize()
     {
-        return \Gate::allows('struktur_edit');
+        return \Gate::allows('ebook_edit');
     }
 
-    public function struktur()
+    public function ebook()
     {
         return [
-           'nama' => [
+           'judul' => [
                 'required',
             ],
-            'jabatan' => [
+            'pengarang' => [
+                'required',
+            ],
+            'penerbit' => [
                 'required',
             ],
         ];

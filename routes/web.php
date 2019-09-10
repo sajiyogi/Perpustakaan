@@ -38,6 +38,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         ]);
 });
 
+    Route::resource('fasilitas', 'FasilitasController');
+    Route::resource('sejarah', 'SejarahController');
+
+    Route::resource('ebook', 'EbookController');
+    Route::delete('ebook/destroy', 'EbookController@massDestroy')->name('ebook.massDestroy');
+    Route::get('/admin/ebook/download/{id}', 'EbookController@download');
+
     Route::resource('struktur', 'StruktursController');
     Route::delete('struktur/destroy', 'StrukturController@massDestroy')->name('struktur.massDestroy');
 
