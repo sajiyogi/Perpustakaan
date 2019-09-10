@@ -5,7 +5,7 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{route('admin.berita.create')}}"> Add Data Berita
+            <a class="btn btn-success" href="{{route('admin.berita.create')}}"> Tambah Berita
             </a>
         </div>
     </div>
@@ -23,10 +23,10 @@
                         <th width="10">
 
                         </th>
-                        <th>Image</th>
+                        <th>Gambar</th>
                         <th>Judul</th>
                         <th>Artikel</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,16 +43,16 @@
 
                             <td>
                                 <div class="btn-group">
-                                <a class="btn btn-primary" href="">Show
+                                <a class="btn btn-primary" href="">Lihat
                                </a>
-                                    <a href="{{route('admin.berita.edit', $row->id )}}" class="btn btn-warning">Edit
+                                    <a href="{{route('admin.berita.edit', $row->id )}}" class="btn btn-warning">Ubah
                                     </a>
                                 
                                     <form method="POST" action="{{route('admin.berita.destroy', $row->id)}}"  onclick="return confirm('Are You Sure ? ')">
                                         @csrf
                                         @method('DELETE')
 
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
                                     </form>
                                 </div>
                             </td>
