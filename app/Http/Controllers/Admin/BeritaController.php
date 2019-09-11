@@ -59,6 +59,7 @@ class BeritaController extends Controller
     
     public function update(Request $request, $id)
     {
+
         $image_name = $request->hidden_image;
         $image      = $request->file('image');
         if ($image != '')
@@ -82,9 +83,7 @@ class BeritaController extends Controller
                 'artikel' => $request->artikel 
             );
 
-         $row=Berita::whereId($id);
-         Storage::disk('public')->delete($row->image);
-         $row->update($form_data);
+         Berita::whereId($id)->update($form_data);
 
          return redirect()->route('admin.berita.index')->with('pesan', 'Data is Successfully update');
     }
