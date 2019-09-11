@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Berita;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
@@ -81,7 +82,10 @@ class BeritaController extends Controller
                 'artikel' => $request->artikel 
             );
 
-         Berita::whereId($id)->update($form_data);
+         $row=Berita::whereId($id);
+         Storage::disk('public')->delete($row->image);
+         $row->update($form_data);
+
          return redirect()->route('admin.berita.index')->with('pesan', 'Data is Successfully update');
     }
 
