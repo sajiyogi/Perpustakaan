@@ -42,7 +42,7 @@
 
                             </td>
                             <td>
-                               <img src="{{asset ('asset/uploadcover/'.$s->file ) }} " alt="" style="width: 200px; height: 200px;" />
+                               <img src="{{asset ('asset/uploadcover/'.$s->file ) }} " alt="" style="width: 150px; height: 100px;" />
                             </td>
                         
                             <td>

@@ -1,102 +1,94 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
-use App\Http\Controllers\Controller;
-use App\Http\Requests\MassDestroyStrukturRequest;
-use App\Http\Requests\StoreStrukturRequest;
-use App\Http\Requests\UpdateStrukturRequest;
-use Illuminate\Http\Request;
 use App\Struktur;
-
-
-
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class StruktursController extends Controller
 {
     
     public function index()
     {
-      
 
-        $struktur = Struktur::all();
-
-        return view('admin.struktur.index', compact('struktur'));
+        $struktur=Struktur::orderBy('id', 'desc')->paginate(100);
+        return view('admin/struktur/index', compact('struktur'));
     }
 
+    
     public function create()
     {
- 
-
         return view('admin.struktur.create');
     }
 
-    public function store(StoreStrukturRequest $request)
+    
+    public function store(Request $request)
     {
- 
+        $this->validate($request, [
+            'nama' => 'required',
+            'file' => 'required|image|mimes:jpg,png,jpeg|max:2048',
+            'jabatan' => 'required',
+        ]);
 
-        if ($request->hasFile('file')) {
-            $name= $this->uploadcover($request);
-            $struktur = Struktur::create([
+        $file = $request->file('file');
+        $new_name = rand() . '.' . $file->getClientOriginalExtension(); 
+        $file->move('asset/uploadcover', $new_name);
+        $form_data = array(
             'nama' => $request->nama,
-            'file' => $name,
-            'jabatan' => $request->jabatan,
-            
-            ]);
-        }
-
-        return redirect()->route('admin.struktur.index');
+            'file' => $new_name,
+            'jabatan' => $request->jabatan
+        );
+        Struktur::create($form_data);
+        return redirect()->route('admin.struktur.index')->with('pesan', 'Struktur Added successfully');
     }
-    private function uploadcover(StoreStrukturRequest $request){
-        $name = $request->file('file')->getClientOriginalName();
-        $ext = $request->file('file')->getClientOriginalExtension();
-        if ($request->file('file')->isValid()) {
 
-        $imagename =md5(date('YmdHis')).".$ext";
-        $uploadpath = 'asset/uploadcover';
-        $request->file('file')->move($uploadpath, $imagename);
-
-        return $imagename;
-        }
-        return false;
-    }
    
-    public function edit(struktur $struktur)
+    public function show($id)
     {
+        //
+    }
 
-
+   
+    public function edit($id)
+    {
+        $struktur=Struktur::findOrFail($id);
         return view('admin.struktur.edit', compact('struktur'));
     }
 
-    public function update(UpdateStrukturRequest $request, struktur $struktur)
-    {
-  
-
-        $struktur->update($request->all());
-
-        return redirect()->route('admin.struktur.index');
-    }
-
-    public function show(struktur $struktur)
-    {
-
-
-        return view('admin.struktur.show', compact('struktur'));
-    }
-
-    public function destroy(Struktur $struktur)
-    {
     
+    public function update(Request $request, $id)
+    {
+        $image_name = $request->hidden_image;
+        $file      = $request->file('file');
+        if ($file != '')
+         {
+          $request->validate(['nama' => 'required',
+            'file' => 'image|max:2048'
+        ]);
+        $image_name = rand() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('asset/uploadcover'), $image_name); 
+         }
+         else{
+            $request->validate([
+                'nama' => 'required',
+                'file' => 'required',
+                'jabatan' => 'required'
+            ]);
+         }
+         $form_data  = array(
+                'nama' => $request->nama,
+                'file' => $image_name,
+                'jabatan' => $request->jabatan 
+            );
 
-        $struktur->delete();
-
-        return back();
+         Struktur::whereId($id)->update($form_data);
+         return redirect()->route('admin.struktur.index')->with('pesan', 'Struktur is Successfully update');
     }
 
-    public function massDestroy(MassDestroyStrukturRequest $request)
+    public function destroy($id)
     {
-        Struktur::whereIn('id', request('ids'))->delete();
-
-        return response(null, 204);
+        $struktur = Struktur::findOrFail($id);
+        $struktur->delete();
+        return redirect()->route('admin.struktur.index')->with('pesan', 'Struktur is Successfully deleted');
     }
 }

@@ -49,7 +49,7 @@
             
             
             <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }} ">
-             <label for="file">{File</label>
+             <label for="file">File</label>
                <input id="file" type="file" class="form-control" name="file" value="{{ old('file'), isset($ebook) ? $ebook->file : '' }}">
 
                     @if ($errors->has('image'))
