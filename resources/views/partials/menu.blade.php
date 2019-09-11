@@ -87,7 +87,7 @@
                         <ul class="nav nav-treeview">
                            
                                 <li class="nav-item">
-                                    <a href="{{ route("admin.struktur.index") }}" class="nav-link {{ request()->is('admin/struktur') || request()->is('admin/struktur/*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.struktur.index') }}" class="nav-link {{ request()->is('admin/struktur') || request()->is('admin/struktur/*') ? 'active' : '' }}">
                                         <i class="fas fa-users">
 
                                         </i>

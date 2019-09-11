@@ -28,7 +28,7 @@
                 <div class="col-md-6">
                     <input type="file" name="image" />
                     <img src="{{ URL::to('/') }}/uploadberita/{{ $data->image }}" class="img-thumbnail" width="100" />
-                    <input type="hidden" name="hidden_image" value="{{ $data->image }}" />
+                    <input type="hidden" name="hidden_image" value="{{ $data['image'] }}"/>
                     @if ($errors->has('image'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('image') }}</strong>
