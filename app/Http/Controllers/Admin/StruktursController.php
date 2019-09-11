@@ -71,13 +71,11 @@ class StruktursController extends Controller
          else{
             $request->validate([
                 'nama' => 'required',
-                'file' => 'required',
                 'jabatan' => 'required'
             ]);
          }
          $form_data  = array(
                 'nama' => $request->nama,
-                'file' => $image_name,
                 'jabatan' => $request->jabatan 
             );
 
