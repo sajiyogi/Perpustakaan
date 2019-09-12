@@ -1,19 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-<div class=" row justify-content-center">
-<div class="col-md-12">
+
 <div class="card">
     <div class="card-header">
-        Create Books
+        Create Kategori Buku
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route('admin.kategoribuku.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{route('admin.kategoribuku.store')}}" enctype="multipart/form-data">
             @csrf
             
             <div class="form-group">
                 <label for="id">Id Kategori</label>
-                <div class="col-md-6">
                 <input id="id" type="text" class="form-control{{ $errors->has('id') ? ' is-invalid' : '' }}" name="id" value="{{ old('id') }}" required autofocus>
 
                 @if ($errors->has('id'))
@@ -21,12 +19,12 @@
                         <strong>{{ $errors->first('id') }}</strong>
                     </span>
                 @endif
-            </div>
                 
             </div>
+
+
             <div class="form-group">
-                <label for="nama">Nama Kategori</label>
-                <div class="col-md-6">
+                <label for="nama">Nama</label>
                 <input id="nama" type="text" class="form-control{{ $errors->has('nama') ? ' is-invalid' : '' }}" name="nama" value="{{ old('nama') }}" required>
 
                 @if ($errors->has('nama'))
@@ -34,13 +32,12 @@
                         <strong>{{ $errors->first('nama') }}</strong>
                     </span>
                 @endif
-                </div>
                 
             </div>
-            
 
+            
             <div class="form-group row mb-0">
-                <div class="col-md-12 text-left">
+                <div class="col-md-6  text-left">
                     <button type="submit" class="btn btn-primary">{{ __('add') }}
                     </button>
                                 
@@ -50,7 +47,4 @@
         </form>
     </div>
 </div>
-</div>
-</div>
-
 @endsection

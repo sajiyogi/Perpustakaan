@@ -5,7 +5,7 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.kategoribuku.create') }}"> Tambah Kategori Buku
+            <a class="btn btn-success" href="{{route('admin.kategoribuku.create')}}"> Tambah Kategori Buku
             </a>
         </div>
     </div>
@@ -35,15 +35,20 @@
 
                             </td>
                             <td>{{ $row->id }}</td>
-                            <td>{{ $row->nama }}</td>
+                            <td>{{ $row->nama}}</td>
+                            
                             <td>
                                 <div class="btn-group">
-                                <a class="btn btn-warning" href="{{route('admin.kategoribuku.edit', $row->id)}}">Ubah</a>
-                                <form method="POST" action="{{route('admin.kategoribuku.destroy', $row->id) }}"  onclick="return confirm('Are You Sure ? ')">
-                                 @csrf
-                                @method('DELETE')
+                                <a class="btn btn-primary" href="">Lihat
+                               </a>
+                                    <a href="{{route('admin.kategoribuku.edit', $row->id)}}" class="btn btn-warning">Ubah
+                                    </a>
+                                
+                                    <form method="POST" action="{{ route('admin.kategoribuku.destroy', $row->id ) }}"  onclick="return confirm('Are You Sure ? ')">
+                                        @csrf
+                                        @method('DELETE')
 
-                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                        <button type="submit" class="btn btn-danger">Hapus</button>
                                     </form>
                                 </div>
                             </td>
@@ -54,4 +59,41 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+@parent
+<script>
+    $(function () {
+  let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
+  let deleteButton = {text: deleteButtonTrans,url: "{{ route('admin.buku.massDestroy') }}",className: 'btn-danger', action: function (e, dt, node, config) {
+      var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
+          return $(entry).data('entry-id')
+      });
+
+      if (ids.length === 0) {
+        alert('{{ trans('global.datatables.zero_selected') }}')
+
+        return
+      }
+
+      if (confirm('{{ trans('global.areYouSure') }}')) {
+        $.ajax({
+          headers: {'x-csrf-token': _token},
+          method: 'POST',
+          url: config.url,
+          data: { ids: ids, _method: 'DELETE' }})
+          .done(function () { location.reload() })
+      }
+    }
+  }
+  let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
+@can('buku_delete')
+  dtButtons.push(deleteButton)
+@endcan
+
+  $('.datatable:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+})
+
+</script>
 @endsection
