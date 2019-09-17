@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Testimoni extends Model
 {
     protected $table = 'testimonis';
-    protected $fillable = ['image','nama','deskripsi'];
+    protected $fillable = [ 'nama', 'deskripsi'];
+    protected $guarded = [];
 }

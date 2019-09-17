@@ -55,4 +55,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('kategoribuku', 'KategoribukuController');
 
     Route::resource('berita', 'BeritaController');
+
+    Route::resource('testimoni', 'TestimoniController');
 });

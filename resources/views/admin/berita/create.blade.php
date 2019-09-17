@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        Create Berita
+        Tambah Berita
     </div>
 
     <div class="card-body">

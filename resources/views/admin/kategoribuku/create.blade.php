@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        Create Kategori Buku
+        Tambah Kategori Buku
     </div>
 
     <div class="card-body">

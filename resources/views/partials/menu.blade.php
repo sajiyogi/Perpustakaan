@@ -183,6 +183,13 @@
                             <p><span>Berita</span></p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('admin.testimoni.index')}}" class="nav-link">
+                            <i class="far fa-id-card"></i>
+                            <p><span>Testimoni</span></p>
+                        </a>
+                    </li>
                     
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">

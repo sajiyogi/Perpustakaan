@@ -5,13 +5,13 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{route('admin.kategoribuku.create')}}"> Tambah Kategori Buku
+            <a class="btn btn-success" href="{{route('admin.testimoni.create')}}"> Tambah Testimoni
             </a>
         </div>
     </div>
 
 <div class="card">
-    <div class="card-header">Data Kategori Buku</div>
+    <div class="card-header">Data Testimoni</div>
 
     <!-- session pesan -->
     @if(session('pesan'))
@@ -28,8 +28,8 @@
                         <th width="10">
 
                         </th>
-                        <th>Id Kategori</th>
-                        <th>Nama Kategori</th>
+                        <th>Nama</th>
+                        <th>Deskripsi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -39,15 +39,17 @@
                             <td>
 
                             </td>
-                            <td>{{ $row->id }}</td>
                             <td>{{ $row->nama}}</td>
+                            <td>{{ strip_tags($row->deskripsi)  }}</td>
                             
                             <td>
                                 <div class="btn-group">
-                                    <a href="{{route('admin.kategoribuku.edit', $row->id)}}" class="btn btn-warning">Ubah
+                                <a class="btn btn-primary" href="">Lihat
+                               </a>
+                                    <a href="{{route('admin.testimoni.edit', $row->id)}}" class="btn btn-warning">Ubah
                                     </a>
                                 
-                                    <form method="POST" action="{{ route('admin.kategoribuku.destroy', $row->id ) }}"  onclick="return confirm('Are You Sure ? ')">
+                                    <form method="POST" action=""  onclick="return confirm('Are You Sure ? ')">
                                         @csrf
                                         @method('DELETE')
 
