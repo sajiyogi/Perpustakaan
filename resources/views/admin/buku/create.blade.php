@@ -1,13 +1,13 @@
 @extends('layouts.admin')
 @section('content')
-
+<script src="{{asset ('js/jquery.js') }}"></script>
 <div class="card">
     <div class="card-header">
         {{ trans('global.create') }} {{ trans('global.buku.title_singular') }}
     </div>
 
     <div class="card-body">
-        <form action="{{ route("admin.buku.store") }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.buku.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             
             <div class="form-group {{ $errors->has('judul') ? 'has-error' : '' }}">
@@ -62,6 +62,8 @@
             <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }} ">
              <label for="image">{{ trans('global.buku.fields.image') }}*</label>
                <input id="image" type="file" class="form-control" name="image" value="{{ old('image'), isset($buku) ? $buku->image : '' }}">
+               <br>
+               <img src="" id="profile-img" width="200px" />
 
                     @if ($errors->has('image'))
                          <p class="help-block">
@@ -71,6 +73,21 @@
                         <p class="helper-block">
                             {{ trans('global.buku.fields.image_helper')}}
                         </p>
+                        <script type="text/javascript">
+                         function readURL(input) {
+                     if (input.files && input.files[0]) {
+                         var reader = new FileReader();
+            
+                     reader.onload = function (e) {
+                        $('#profile-img').attr('src', e.target.result);
+                             }
+                        reader.readAsDataURL(input.files[0]);
+                            }
+                        }
+                         $("#image").change(function(){
+                        readURL(this);
+                         });
+                    </script>
                 
              </div>
 
