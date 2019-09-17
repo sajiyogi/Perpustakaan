@@ -13,6 +13,7 @@ use DB;
 
 
 
+
 class EbookController extends Controller
 {
     
@@ -65,19 +66,37 @@ class EbookController extends Controller
    
     public function edit(ebook $ebook)
     {
-
-
-        return view('admin.ebook.edit', compact('ebook'));
-    }
+        return view('admin.ebook.edit', compact('ebook'));}
 
     public function update(UpdateEbookRequest $request, ebook $ebook)
     {
   
+        $image_name = $request->hidden_image;
+        $image      = $request->file('file');
+        if ($image != '')
+         {
+          $request->validate(['judul' => 'required',
+            'file' => 'image|max:2048'
+        ]);
+        $image_name = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('ebook'), $image_name); 
+         }
+         else{
+            $request->validate([
+                'judul' => 'required',
+                'pengarang' => 'required',
+                'penerbit' => 'required'
+            ]);
+         }
+         $form_data  = array(
+                'judul' => $request->judul,
+                'pengarang' => $request->pengarang,
+                'penerbit' => $request->penerbit 
+            );
 
-        $ebook->update($request->all());
+         Ebook::whereId($id)->update($form_data);
 
-        return redirect()->route('admin.ebook.index');
-    }
+         return redirect()->route('admin.ebook.index')->with('pesan', 'Ebook is Successfully update');    }
 
     public function show(ebook $ebook)
     {
@@ -103,7 +122,8 @@ class EbookController extends Controller
     }
 
     public function download(){
-	$ebook=DB::table('ebooks')->get(); 
-	return view ('/admin/ebook/download', compact('ebook'));
-}
+    $ebook=DB::table('ebooks')->get(); 
+    return view ('admin.ebook.download', compact('ebook'));
+    }
+
 }

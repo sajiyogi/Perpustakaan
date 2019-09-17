@@ -45,7 +45,10 @@ class StruktursController extends Controller
    
     public function show($id)
     {
-        //
+        $struktur = Struktur::find($id);
+    return view('admin.struktur.show',compact('struktur'));
+        // $strukturs->load('strukturs');
+        // return view('admin.struktur.show', compact('strukturs'));
     }
 
    
