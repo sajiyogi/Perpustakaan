@@ -69,8 +69,7 @@
     </div>
 </div>
 @endsection
-
-@section('scripts')
+<!-- @section('scripts')
 @parent
 <script>
     $(function () {
@@ -105,5 +104,4 @@
 })
 
 </script>
-@if (session('pesan'))
-@endsection
+@endsection -->
