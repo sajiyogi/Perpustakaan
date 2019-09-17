@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Testimoni;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +14,8 @@ class TestimoniController extends Controller
      */
     public function index()
     {
-        $data=
+        $data=Testimoni::orderBy('id', 'desc')->paginate(100);
+        return view('admin/testimoni/index', compact('data'));
     }
 
     /**
@@ -24,7 +25,7 @@ class TestimoniController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.testimoni.create');
     }
 
     /**
@@ -35,7 +36,13 @@ class TestimoniController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'nama' => 'min:3',
+            'deskripsi' => 'required'
+        ]);
+
+        Testimoni::create($request->all());
+        return redirect()->route('admin.testimoni.index')->with('pesan', 'Data is Successfully Created');
     }
 
     /**
@@ -57,7 +64,8 @@ class TestimoniController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data=Testimoni::findOrFail($id);
+        return view('admin.testimoni.edit', compact('data'));
     }
 
     /**
@@ -69,7 +77,14 @@ class TestimoniController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+         $this->validate($request, [
+            'nama' => 'min:3',
+            'deskripsi' => 'required'
+        ]);
+
+        $data=Testimoni::findOrFail($id);
+        $data->update($request->all());
+        return redirect()->route('admin.testimoni.index')->with('pesan', 'Data is Successfully Updated');
     }
 
     /**
@@ -80,6 +95,8 @@ class TestimoniController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data=Testimoni::findOrFail($id);
+        $data->delete();
+        return redirect()->route('admin.testimoni.index')->with('pesan', 'Data is Successfully Deleted');
     }
 }

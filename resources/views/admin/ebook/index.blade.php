@@ -3,7 +3,7 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.ebook.create") }}"> Add
+            <a class="btn btn-success" href="{{ route("admin.ebook.create") }}"> Tambah E-Book
             </a>
         </div>
     </div>

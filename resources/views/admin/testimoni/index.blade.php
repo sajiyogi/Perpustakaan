@@ -5,13 +5,13 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{route('admin.berita.create')}}"> Tambah Berita
+            <a class="btn btn-success" href="{{route('admin.testimoni.create')}}"> Tambah Testimoni
             </a>
         </div>
     </div>
 
 <div class="card">
-    <div class="card-header">Data Berita</div>
+    <div class="card-header">Data Testimoni</div>
 
     <!-- session pesan -->
     @if(session('pesan'))
@@ -28,9 +28,8 @@
                         <th width="10">
 
                         </th>
-                        <th>Gambar</th>
-                        <th>Judul</th>
-                        <th>Artikel</th>
+                        <th>Nama</th>
+                        <th>Deskripsi</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -40,20 +39,17 @@
                             <td>
 
                             </td>
-                            <td>
-                               <img src="{{URL::to('/')}}/uploadberita/{{ $row->image}}" class="img-thumbnail" width="75" />
-                            </td>
-                            <td>{{ $row->judul }}</td>
-                            <td>{{ strip_tags($row->artikel)  }}</td>
-
+                            <td>{{ $row->nama}}</td>
+                            <td>{{ strip_tags($row->deskripsi)  }}</td>
+                            
                             <td>
                                 <div class="btn-group">
                                 <a class="btn btn-primary" href="">Lihat
                                </a>
-                                    <a href="{{route('admin.berita.edit', $row->id )}}" class="btn btn-warning">Ubah
+                                    <a href="{{route('admin.testimoni.edit', $row->id)}}" class="btn btn-warning">Ubah
                                     </a>
                                 
-                                    <form method="POST" action="{{route('admin.berita.destroy', $row->id)}}"  onclick="return confirm('Are You Sure ? ')">
+                                    <form method="POST" action=""  onclick="return confirm('Are You Sure ? ')">
                                         @csrf
                                         @method('DELETE')
 
@@ -105,5 +101,4 @@
 })
 
 </script>
-@if (session('pesan'))
 @endsection

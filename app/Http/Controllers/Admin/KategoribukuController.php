@@ -11,91 +11,62 @@ class KategoribukuController extends Controller
     
     public function index()
     {
-        $data = Kategoribuku::orderBy('id', 'desc')->paginate(5);
+        $data = Kategoribuku::orderBy('id','desc')->paginate(100);
         return view('admin/kategoribuku/index', compact('data'));
     }
 
-    
     public function create()
     {
         return view('admin.kategoribuku.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
-            'id' => 'required',
-            'nama' => 'required',
-
+            'id' => 'min:3',
+            'nama' => 'required'
         ]);
 
-        $form_data = array(
-            'id' => $request->id ,
-            'nama' => $request->nama
-         );
-
-        Kategoribuku::create($form_data);
-        return redirect()->route('admin.kategoribuku.index')->with('pesan','Data Added Successfully');
-
-
+        Kategoribuku::create($request->all());
+        return redirect()->route('admin.kategoribuku.index')->with('pesan', 'Data is Successfully Created');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Kategoribuku  $kategoribuku
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Kategoribuku $kategoribuku)
+    public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Kategoribuku  $kategoribuku
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        $data = Kategoribuku::findOrFail($id);
 
+        $data=Kategoribuku::findOrFail($id);
         return view('admin.kategoribuku.edit', compact('data'));
+       
     }
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'id' => 'required',
+        $this->validate($request, [
+            'id' => 'min:3',
             'nama' => 'required'
         ]);
 
-        $form_data = array (
-            'id' => $request->id,
-            'nama' => $request->nama
-        );
-
-        Kategoribuku::whereId($id)->update($form_data);
-        return redirect()->route('admin.kategoribuku.index')->with('pesan', 'Data is Successfully updated');
+        $data=Kategoribuku::findOrFail($id);
+        $data->update($request->all());
+        return redirect()->route('admin.kategoribuku.index')->with('pesan', 'Data is Successfully Updated');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Kategoribuku  $kategoribuku
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $data = Kategoribuku::findOrFail($id);
+        $data=Kategoribuku::findOrFail($id);
         $data->delete();
-        return redirect()->route('admin.kategoribuku.index')->with('pesan', 'Data is Successfully deleted');
+        return redirect()->route('admin.kategoribuku.index')->with('pesan', 'Data is Successfully Deleted');
     }
 }

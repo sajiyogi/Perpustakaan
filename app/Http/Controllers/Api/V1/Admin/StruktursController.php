@@ -31,7 +31,7 @@ class StruktursController extends Controller
 
     public function show(Struktur $struktur)
     {
-        return $struktur;
+        return $struktur->show();
     }
 
     public function destroy(Struktur $struktur)
