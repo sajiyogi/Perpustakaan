@@ -1,14 +1,11 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use Illuminate\Support\Facades\Storage;
+
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MassDestroyBukuRequest;
 use App\Http\Requests\StoreBukuRequest;
 use App\Http\Requests\UpdateBukuRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-
 use App\Buku;
 
 
@@ -63,60 +60,21 @@ class BukuController extends Controller
         }
         return false;
     }
-    private function uploadcoverupdate(UpdateBukuRequest $request){
-        $name = $request->file('image')->getClientOriginalName();
-        $ext = $request->file('image')->getClientOriginalExtension();
-        if ($request->file('image')->isValid()) {
-
-        $imagename =md5(date('YmdHis')).".$ext";
-        $uploadpath = 'asset/uploadcover';
-        $request->file('image')->move($uploadpath, $imagename);
-
-        return $imagename;
-        }
-        return false;
-    }
    
-    public function edit($id)
+    public function edit(buku $buku)
     {
         abort_unless(\Gate::allows('buku_edit'), 403);
-        $buku =Buku::findOrFail($id);
 
         return view('admin.buku.edit', compact('buku'));
     }
 
-    public function update(UpdatebukuRequest $request, $id)
+    public function update(UpdatebukuRequest $request, buku $buku)
     {
         abort_unless(\Gate::allows('buku_edit'), 403);
-        $this->validate($request,[
-            'judul' => 'required',
-            'pengarang' => 'required',
-            'penerbit' => 'required',
-            'jumlah' => 'required'
-        
-        ]);
-       
-        $buku = Buku::findOrFail($id);
-        if ($request->hasFile('image')) {
-           unlink('asset/uploadcover/'.$buku->image);
-            $name= $this->uploadcoverupdate($request);
-            $buku->judul = $request->get('judul');
-            $buku->image = $name;
-            $buku->pengarang = $request->get('pengarang');
-            $buku->penerbit = $request->get('penerbit');
-            $buku->jumlah =$request->get('jumlah');
-            $buku->save();
-        
-        }else{
-            $buku->judul = $request->get('judul');
-            $buku->pengarang = $request->get('pengarang');
-            $buku->penerbit = $request->get('penerbit');
-            $buku->jumlah =$request->get('jumlah');
-            $buku->save();
-        
-        }
 
-        return redirect()->route('admin.buku.index')->with('success','Data berhasil diedit');
+        $buku->update($request->all());
+
+        return redirect()->route('admin.buku.index');
     }
 
     public function show(buku $buku)

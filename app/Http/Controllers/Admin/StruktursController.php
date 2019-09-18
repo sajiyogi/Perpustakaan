@@ -45,10 +45,7 @@ class StruktursController extends Controller
    
     public function show($id)
     {
-        $struktur = Struktur::find($id);
-    return view('admin.struktur.show',compact('struktur'));
-        // $strukturs->load('strukturs');
-        // return view('admin.struktur.show', compact('strukturs'));
+        //
     }
 
    
@@ -74,12 +71,13 @@ class StruktursController extends Controller
          else{
             $request->validate([
                 'nama' => 'required',
-                'jabatan' => 'required'
+                'jabatan' => 'required',
             ]);
          }
          $form_data  = array(
                 'nama' => $request->nama,
-                'jabatan' => $request->jabatan 
+                'jabatan' => $request->jabatan,
+                'file' => $image_name
             );
 
          Struktur::whereId($id)->update($form_data);

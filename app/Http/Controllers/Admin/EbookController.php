@@ -13,117 +13,97 @@ use DB;
 
 
 
-
 class EbookController extends Controller
 {
     
-    public function index()
-    {
-      
+   public function index(){
 
-        $ebook = Ebook::all();
-
-        return view('admin.ebook.index', compact('ebook'));
+        $ebook=Ebook::orderBy('id', 'desc')->paginate(100);
+        return view('admin/ebook/index', compact('ebook'));
     }
 
+    
     public function create()
     {
- 
-
         return view('admin.ebook.create');
     }
 
-    public function store(StoreEbookRequest $request)
+    
+    public function store(Request $request)
     {
- 
+        $this->validate($request, [
+            'judul' => 'required',
+            'file' => 'required|file|mimes:pdf,docx,txt|max:5048',
+            'penerbit' => 'required',
+            'pengarang' => 'required',
+        ]);
 
-        if ($request->hasFile('file')) {
-            $name= $this->uploadcover($request);
-            $ebook = Ebook::create([
+        $file = $request->file('file');
+        $new_name = $file->getClientOriginalName();
+        $file->move('ebook', $new_name);
+        $form_data = array(
             'judul' => $request->judul,
-            'file' => $name,
             'penerbit' => $request->penerbit,
-            'pengarang' => $request->pengarang,
-            
-            ]);
-        }
-
-        return redirect()->route('admin.ebook.index');
+            'file' => $new_name,
+            'pengarang' => $request->pengarang
+        );
+        Ebook::create($form_data);
+        return redirect()->route('admin.ebook.index')->with('pesan', 'Ebook Added successfully');
     }
-    private function uploadcover(StoreEbookRequest $request){
-        $name = $request->file('file')->getClientOriginalName();
-        $ext = $request->file('file')->getClientOriginalExtension();
-        if ($request->file('file')->isValid()) {
 
-        $imagename =md5(date('YmdHis')).".$ext";
-        $uploadpath = 'ebook';
-        $request->file('file')->move($uploadpath, $imagename);
-
-        return $imagename;
-        }
-        return false;
-    }
    
-    public function edit(ebook $ebook)
+    public function show($id)
     {
-        return view('admin.ebook.edit', compact('ebook'));}
+        //
+    }
 
-    public function update(UpdateEbookRequest $request, ebook $ebook)
+   
+    public function edit($id)
     {
-  
+        $ebook=Ebook::findOrFail($id);
+        return view('admin.ebook.edit', compact('ebook'));
+    }
+
+    
+    public function update(Request $request, $id)
+    {
         $image_name = $request->hidden_image;
-        $image      = $request->file('file');
-        if ($image != '')
+        $file      = $request->file('file');
+        if ($file != '')
          {
           $request->validate(['judul' => 'required',
-            'file' => 'image|max:2048'
+            'file' => 'file|max:2048'
         ]);
-        $image_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('ebook'), $image_name); 
+        $image_name = $file->getClientOriginalName();
+        $file->move(public_path('ebook'), $image_name); 
          }
          else{
             $request->validate([
                 'judul' => 'required',
-                'pengarang' => 'required',
-                'penerbit' => 'required'
+                'penerbit' => 'required',
+                'pengarang' => 'required'
             ]);
          }
          $form_data  = array(
                 'judul' => $request->judul,
-                'pengarang' => $request->pengarang,
-                'penerbit' => $request->penerbit 
+                'penerbit' => $request->penerbit,
+                'file' => $image_name,
+                'pengarang' => $request->pengarang 
             );
 
          Ebook::whereId($id)->update($form_data);
-
-         return redirect()->route('admin.ebook.index')->with('pesan', 'Ebook is Successfully update');    }
-
-    public function show(ebook $ebook)
-    {
-
-
-        return view('admin.ebook.show', compact('ebook'));
+         return redirect()->route('admin.ebook.index')->with('pesan', 'Ebook is Successfully update');
     }
 
-    public function destroy(Ebook $ebook)
+    public function destroy($id)
     {
-    
-
+        $ebook = Ebook::findOrFail($id);
         $ebook->delete();
-
-        return back();
-    }
-
-    public function massDestroy(MassDestroyEbookRequest $request)
-    {
-        Ebook::whereIn('id', request('ids'))->delete();
-
-        return response(null, 204);
+        return redirect()->route('admin.ebook.index')->with('pesan', 'Ebook is Successfully deleted');
     }
 
     public function download(){
     $ebook=DB::table('ebooks')->get(); 
-    return view ('admin.ebook.download', compact('ebook'));
+    return view ('.admin.ebook.download', compact('ebook'));
     }
-
 }

@@ -3,7 +3,7 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.ebook.create") }}"> Tambah E-Book
+            <a class="btn btn-success" href="{{ route("admin.ebook.create") }}"> Add
             </a>
         </div>
     </div>
@@ -62,7 +62,7 @@
 
                             <td>
                              
-                                    <a class="btn btn-xs btn-primary" href="ebook/{{$e->file}}" download="{{ $e->file }}">download
+                                    <a class="btn btn-xs btn-primary" href="/ebook/{{$e->file}}" download="{{ $e->file }}">download
                                     </a>
                       
                              

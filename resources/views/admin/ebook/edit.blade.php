@@ -51,7 +51,6 @@
                 <label for="file">Foto</label>
                 <div class="col-md-6">
                     <input type="file" name="file" />
-                    
                     <input type="hidden" name="hidden_image" value="{{ $ebook->file }}" />
                     @if ($errors->has('file'))
                     <span class="invalid-feedback" role="alert">
@@ -65,9 +64,9 @@
 
             <div class="form-group row mb-0">
                 <div class="col-md-6 offset-md-4">
-                    <button type="submit" class="btn btn-primary">{{ __('edit') }}
+                    <button type="submit" class="btn btn-primary"><!-- {{ __('edit') }} -->Edit
                     </button>
-                        <a href="{{ route('admin.ebook.index') }}" class="btn btn-danger">Back</a>
+                        <a href="{{ route('admin.struktur.index') }}" class="btn btn-danger">Back</a>
                 </div>
             </div>
         </form>
