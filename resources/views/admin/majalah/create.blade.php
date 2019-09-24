@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        Majalah
+        Add Majalah
     </div>
 
     <div class="card-body">
