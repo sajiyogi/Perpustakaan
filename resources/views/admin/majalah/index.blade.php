@@ -40,13 +40,12 @@
                 </thead>
                 <tbody>
                     @foreach($majalah as $key => $m)
-                        <tr data-entry-id="{{ $e->id }}">
+                        <tr data-entry-id="{{ $m->id }}">
                             <td>
 
                             </td>
                             <td>
                               {{ $m->file  ?? '' }}
-                               <!-- <img src="{{asset ('asset/uploadcover/'.$e->file ) }} " alt="" style="width: 200px; height: 200px;" /> -->
                             </td>
                         
                             <td>
@@ -62,7 +61,7 @@
 
                             <td>
                              
-                                    <a class="btn btn-xs btn-primary" href="/majalah/{{$m->file}}" download="{{ $e->file }}">download
+                                    <a class="btn btn-xs btn-primary" href="/majalah/{{$m->file}}" download="{{ $m->file }}">download
                                     </a>
                       
                              
