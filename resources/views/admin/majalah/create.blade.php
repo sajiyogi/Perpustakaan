@@ -3,7 +3,7 @@
 
 <div class="card">
     <div class="card-header">
-        Majalah
+        Add Majalah
     </div>
 
     <div class="card-body">
@@ -26,28 +26,37 @@
                 <label for="penyusun">Penyusun</label>
                 <input type="text" id="penyusun" name="penyusun" class="form-control" value="{{ old('penyusun', isset($majalah) ? $majalah->penyusun : '') }}">
                 @if($errors->has('penyusun'))
+                    <p class="help-block">
+                        {{ $errors->first('penyusun') }}
+                    </p>
                 @endif
-                
+                <p class="helper-block">
+                </p>
             </div>
             <div class="form-group {{ $errors->has('kategori') ? 'has-error' : '' }}">
                 <label for="kategori">Kategori</label>
                 <input type="text" id="kategori" name="kategori" class="form-control" value="{{ old('kategori', isset($majalah) ? $majalah->kategori : '') }}">
                 @if($errors->has('kategori'))
+                    <p class="help-block">
+                        {{ $errors->first('kategori') }}
+                    </p>
                 @endif
+                <p class="helper-block">
+                    {{ trans('global.buku.fields.pengarang_helper') }}
+                </p>
             </div>
             
             
-            <div class="form-group {{ $errors->has('image') ? ' has-error' : '' }} ">
+            <div class="form-group {{ $errors->has('file') ? ' has-error' : '' }} ">
              <label for="file">File</label>
-               <input id="file" type="file" class="form-control" name="file" value="{{ old('file'), isset($majalah)?$majalah->file : '' }}">
+               <input id="file" type="file" class="form-control" name="file" value="{{ old('file'), isset($majalah) ? $majalah->file : '' }}">
 
-                    @if ($errors->has('image'))
+                    @if ($errors->has('file'))
                          <p class="help-block">
-                            {{ $errors->first('image') }}
+                            {{ $errors->first('file') }}
                         </p>
                     @endif
                         <p class="helper-block">
-                            {{ trans('global.buku.fields.image_helper')}}
                         </p>
                 
              </div>

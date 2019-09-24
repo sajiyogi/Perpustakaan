@@ -113,7 +113,7 @@ class MajalahController extends Controller
     }
 
     public function download(){
-    $majalah=DB::table('majalahs')->get(); 
+    $majalah=DB::table('majalah')->get(); 
     return view ('.admin.majalah.download', compact('majalah'));
     }
 }
