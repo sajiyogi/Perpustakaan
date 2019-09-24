@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -67,15 +66,20 @@ class EbookController extends Controller
     
     public function update(Request $request, $id)
     {
-        $image_name = $request->hidden_image;
+        $ebook=Ebook::findOrFail($id);
+        $File_name = $request->hidden_file;
         $file      = $request->file('file');
         if ($file != '')
          {
+            $usersFile = public_path("ebook/{$ebook->file}"); // mengambil gambar lama dari folder ebook
+            if (Ebook::exists($usersFile)) { // unlink atau hapus gambar lama dari folder ebook
+            unlink($usersFile);
+        }
           $request->validate(['judul' => 'required',
             'file' => 'file|max:2048'
         ]);
-        $image_name = $file->getClientOriginalName();
-        $file->move(public_path('ebook'), $image_name); 
+        $File_name = $file->getClientOriginalName();
+        $file->move(public_path('ebook'), $File_name); 
          }
          else{
             $request->validate([
@@ -87,7 +91,7 @@ class EbookController extends Controller
          $form_data  = array(
                 'judul' => $request->judul,
                 'penerbit' => $request->penerbit,
-                'file' => $image_name,
+                'file' => $File_name,
                 'pengarang' => $request->pengarang 
             );
 
@@ -98,6 +102,12 @@ class EbookController extends Controller
     public function destroy($id)
     {
         $ebook = Ebook::findOrFail($id);
+        $usersFile = public_path("ebook/{$ebook->file}");
+
+        if(Ebook::exists($usersFile))
+        {
+            unlink($usersFile);
+        }
         $ebook->delete();
         return redirect()->route('admin.ebook.index')->with('pesan', 'Ebook is Successfully deleted');
     }

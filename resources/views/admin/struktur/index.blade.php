@@ -111,7 +111,7 @@
     }
   }
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('struktur_delete')
+@can('user_delete')
   dtButtons.push(deleteButton)
 @endcan
 

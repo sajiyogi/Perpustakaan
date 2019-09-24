@@ -168,6 +168,14 @@
                         </a>
                     </li>
 
+                     <li class="nav-item">
+                        <a href="{{ route('admin.majalah.index') }}" class="nav-link {{ request()->is('admin/majalah') || request()->is('admin/majalah/*') ? 'active' : '' }}">
+                            <i class="fas fa-book">
+                            </i>
+                            <p><span>Majalah</span></p>
+                        </a>
+                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('admin.kategoribuku.index') }}" class="nav-link">
                             <i class="fas fa-cogs">

@@ -1,82 +1,60 @@
 @extends('layouts.admin')
 @section('content')
 
-    <div style="margin-bottom: 10px;" class="row">
-        <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.struktur.create") }}"> Add
-            </a>
-        </div>
-    </div>
-
 <div class="card">
     <div class="card-header">
         Struktur Organisasi
     </div>
 
     <div class="card-body">
-        <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable">
-                <thead>
-                    <tr>
-                        <th width="10">
+        <form action="{{ route("admin.struktur.store") }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            
+            <div class="form-group {{ $errors->has('nama') ? 'has-error' : '' }}">
+                <label for="nama">Nama</label>
+                <input type="text" id="nama" name="nama" class="form-control" value="{{ old('nama', isset($struktur) ? $strukturs->nama : '') }}">
+                @if($errors->has('nama'))
+                    <p class="help-block">
+                        {{ $errors->first('nama') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('global.buku.fields.judul_helper') }}
+                </p>
+            </div>
+            <div class="form-group {{ $errors->has('jabatan') ? 'has-error' : '' }}">
+                <label for="penerbit">Jabatan</label>
+                <input type="text" id="jabatan" name="jabatan" class="form-control" value="{{ old('jabatan', isset($struktur) ? $strukturs->jabatan : '') }}">
+                @if($errors->has('jabatan'))
+                    <p class="help-block">
+                        {{ $errors->first('jabatan') }}
+                    </p>
+                @endif
+                <p class="helper-block">
+                    {{ trans('global.buku.fields.penerbit_helper') }}
+                </p>
+            </div>
+            
+            
+            <div class="form-group {{ $errors->has('file') ? ' has-error' : '' }} ">
+             <label for="file">Gambar</label>
+               <input id="file" type="file" class="form-control" name="file" value="{{ old('file'), isset($struktur) ? $strukturs->file : '' }}">
 
-                        </th>
-                         <th>
-                            Gambar
-                        </th>
-                        <th>
-                            Nama
-                        </th>
-                         <th>
-                            Jabatan
-                        </th>
-                        <th>
-                            &nbsp;
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($struktur as $key => $s)
-                        <tr data-entry-id="{{ $s->id }}">
-                            <td>
+                    @if ($errors->has('file'))
+                         <p class="help-block">
+                            {{ $errors->first('file') }}
+                        </p>
+                    @endif
+                        <p class="helper-block">
+                            {{ trans('global.buku.fields.image_helper')}}
+                        </p>
+                
+             </div>
 
-                            </td>
-                            <td>
-                               <img src="{{asset ('asset/uploadcover/'.$s->file ) }} " alt="" style="width: 200px; height: 200px;" />
-                            </td>
-                        
-                            <td>
-                                {{ $s->nama  ?? '' }}
-                            </td>
-                            <td>
-                                {{$s->jabatan ?? '' }}
-                            </td>
-                            
-                            
-
-                            <td>
-                             
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.struktur.show', $s->id) }}">View
-                                    </a>
-                      
-                             
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.struktur.edit', $s->id) }}">
-                                        Edit
-                                    </a>
-                          
-                                    <form action="{{ route('admin.struktur.destroy', $s->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
-                                    </form>
-                        
-                            </td>
-
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
+            <div>
+                <input class="btn btn-danger" type="submit" value="{{ __('add') }}">
+            </div>
+        </form>
     </div>
 </div>
 @endsection

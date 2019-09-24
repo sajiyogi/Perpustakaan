@@ -45,7 +45,8 @@ class StruktursController extends Controller
    
     public function show($id)
     {
-        //
+        $struktur=Struktur::findOrFail($id);
+        return view('admin.struktur.show', compact('struktur'));
     }
 
    
@@ -58,10 +59,16 @@ class StruktursController extends Controller
     
     public function update(Request $request, $id)
     {
+        $struktur=Struktur::findOrFail($id);
         $image_name = $request->hidden_image;
         $file      = $request->file('file');
         if ($file != '')
          {
+            $usersImage = public_path("asset/uploadcover/{$struktur->file}"); // get previous image from folder
+            if (Struktur::exists($usersImage)) { // unlink or remove previous image from folder
+            unlink($usersImage);
+        }
+
           $request->validate(['nama' => 'required',
             'file' => 'image|max:2048'
         ]);
@@ -86,7 +93,14 @@ class StruktursController extends Controller
 
     public function destroy($id)
     {
+
         $struktur = Struktur::findOrFail($id);
+        $usersImage = public_path("asset/uploadcover/{$struktur->file}");
+
+        if(Struktur::exists($usersImage))
+        {
+            unlink($usersImage);
+        }
         $struktur->delete();
         return redirect()->route('admin.struktur.index')->with('pesan', 'Struktur is Successfully deleted');
     }

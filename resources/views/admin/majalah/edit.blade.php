@@ -3,18 +3,18 @@
 
 <div class="card">
     <div class="card-header">
-        Edit Struktur
+        Edit Majalah
     </div>
 
     <div class="card-body">
-        <form method="POST" action="{{ route('admin.ebook.update' , $ebook['id']) }}"  enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.majalah.update' , $majalah['id']) }}"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
             <div class="form-group">
                 <label for="judul">Judul</label>
                 <div class="col-md-6">
-                    <input id="judul" type="text" name="judul" value="{{$ebook['judul']}}" class="form-control{{ $errors->has('judul') ? ' is-invalid' : '' }}"  value="{{ old('judul') }}" required autofocus>
+                    <input id="judul" type="text" name="judul" value="{{$majalah['judul']}}" class="form-control{{ $errors->has('judul') ? ' is-invalid' : '' }}"  value="{{ old('judul') }}" required autofocus>
 
                     @if ($errors->has('judul'))
                     <span class="invalid-feedback" role="alert">
@@ -24,25 +24,25 @@
                 </div>
              </div>
             <div class="form-group">
-                <label for="pengarang">Pengarang</label>
+                <label for="penyusun">Penyusun</label>
                 <div class="col-md-6">
-                    <input id="pengarang" type="text" name="pengarang" value="{{$ebook['pengarang']}}" class="form-control{{ $errors->has('pengarang') ? ' is-invalid' : '' }}"  value="{{ old('pengarang') }}" required autofocus>
+                    <input id="penyusun" type="text" name="penyusun" value="{{$majalah['penyusun']}}" class="form-control{{ $errors->has('penyusun') ? ' is-invalid' : '' }}"  value="{{ old('penyusun') }}" required autofocus>
 
-                    @if ($errors->has('pengarang'))
+                    @if ($errors->has('penyusun'))
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('pengarang') }}</strong>
+                        <strong>{{ $errors->first('penyusun') }}</strong>
                     </span>
                     @endif
                 </div>
              </div>
             <div class="form-group">
-                <label for="penerbit">Penerbit</label>
+                <label for="kategori">Kategori</label>
                 <div class="col-md-6">
-                    <input id="penerbit" type="text" name="penerbit" value="{{$ebook['penerbit']}}" class="form-control{{ $errors->has('penerbit') ? ' is-invalid' : '' }}"  value="{{ old('penerbit') }}" required autofocus>
+                    <input id="kategori" type="text" name="kategori" value="{{$majalah['kategori']}}" class="form-control{{ $errors->has('kategori') ? ' is-invalid' : '' }}"  value="{{ old('kategori') }}" required autofocus>
 
-                    @if ($errors->has('penerbit'))
+                    @if ($errors->has('kategori'))
                     <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('penerbit') }}</strong>
+                        <strong>{{ $errors->first('kategori') }}</strong>
                     </span>
                     @endif
                 </div>
@@ -51,7 +51,7 @@
                 <label for="file">File</label>
                 <div class="col-md-6">
                     <input type="file" name="file" />
-                    <input type="hidden" name="hidden_file" value="{{ $ebook->file }}" />
+                    <input type="hidden" name="hidden_file" value="{{ $majalah->file }}" />
                     @if ($errors->has('file'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('file') }}</strong>
