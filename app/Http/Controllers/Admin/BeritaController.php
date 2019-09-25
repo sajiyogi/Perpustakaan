@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Berita;
+use File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -56,24 +57,23 @@ class BeritaController extends Controller
         return view('admin.berita.edit', compact('data'));
     }
 
-    
     public function update(Request $request, $id)
-    {
-
+    {   
         $image_name = $request->hidden_image;
         $image      = $request->file('image');
-        if ($image != '')
-         {
-          $request->validate(['judul' => 'required',
-            'image' => 'image|max:2048'
-        ]);
-        $image_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path('uploadberita'), $image_name); 
+        $data       = Berita::findOrFail($id);
+        if ($request->hasFile('image'))
+        {
+            unlink('uploadberita/'.$data->image);
+            $request->validate(['judul' => 'required',
+            'image' => 'image|max:2048' ]);
+
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploadberita'), $image_name); 
          }
          else{
             $request->validate([
                 'judul' => 'required',
-                'image' => 'required',
                 'artikel' => 'required'
             ]);
          }
@@ -85,13 +85,16 @@ class BeritaController extends Controller
 
          Berita::whereId($id)->update($form_data);
 
-         return redirect()->route('admin.berita.index')->with('pesan', 'Data is Successfully update');
+         return redirect()->route('admin.berita.index')->with('pesan', 'Data is Successfully updated');
+
+       
     }
 
     public function destroy($id)
     {
-        $data = Berita::findOrFail($id);
-        $data->delete();
+        $data = Berita::whereId($id)->first();
+        File::delete('uploadberita/'.$data->image);
+        Berita::whereId($id)->delete();
         return redirect()->route('admin.berita.index')->with('pesan', 'Data is Successfully deleted');
     }
 }
