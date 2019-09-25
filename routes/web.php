@@ -45,6 +45,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('ebook/destroy', 'EbookController@massDestroy')->name('ebook.massDestroy');
     Route::get('/admin/ebook/download/{id}', 'EbookController@download');
 
+    Route::resource('majalah', 'MajalahController');
+    Route::delete('majaalh/destroy', 'MajalahController@massDestroy')->name('majalah.massDestroy');
+    Route::get('/admin/majalah/download/{id}', 'MajalahController@download');
+
     Route::resource('struktur', 'StruktursController');
     Route::delete('struktur/destroy', 'StrukturController@massDestroy')->name('struktur.massDestroy');
 

@@ -3,7 +3,7 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.struktur.create") }}"> Tambah Struktur Organisasi
+            <a class="btn btn-success" href="{{ route("admin.struktur.create") }}"> Add
             </a>
         </div>
     </div>
@@ -111,7 +111,7 @@
     }
   }
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('struktur_delete')
+@can('user_delete')
   dtButtons.push(deleteButton)
 @endcan
 

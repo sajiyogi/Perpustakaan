@@ -3,14 +3,14 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.ebook.create") }}"> Add
+            <a class="btn btn-success" href="{{ route("admin.majalah.create") }}"> Add
             </a>
         </div>
     </div>
 
 <div class="card">
     <div class="card-header">
-        Ebook
+        Majalah
     </div>
 
     <div class="card-body">
@@ -28,10 +28,10 @@
                             Judul
                         </th>
                          <th>
-                            Pengarang
+                            Penyusun
                         </th>
                          <th>
-                            Penerbit
+                            Kategori
                         </th>
                         <th>
                             &nbsp;
@@ -39,38 +39,38 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($ebook as $key => $e)
-                        <tr data-entry-id="{{ $e->id }}">
+                    @foreach($majalah as $key => $m)
+                        <tr data-entry-id="{{ $m->id }}">
                             <td>
 
                             </td>
                             <td>
-                              {{ $e->file  ?? '' }}
-                               <!-- <img src="{{asset ('asset/uploadcover/'.$e->file ) }} " alt="" style="width: 200px; height: 200px;" /> -->
+                              {{ $m->file  ?? '' }}
+                               <!-- <img src="{{asset ('asset/uploadcover/'.$m->file ) }} " alt="" style="width: 200px; height: 200px;" /> -->
                             </td>
                         
                             <td>
-                                {{ $e->judul  ?? '' }}
+                                {{ $m->judul  ?? '' }}
                             </td>
                             <td>
-                                {{$e->pengarang ?? '' }}
+                                {{$m->penyusun ?? '' }}
                             </td>
                             <td>
-                                {{$e->penerbit ?? '' }}
+                                {{$m->kategori ?? '' }}
                             </td>
                             
 
                             <td>
                              
-                                    <a class="btn btn-xs btn-primary" href="/ebook/{{$e->file}}" download="{{ $e->file }}">download
+                                    <a class="btn btn-xs btn-primary" href="/majalah/{{$m->file}}" download="{{ $m->file }}">download
                                     </a>
                       
                              
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.ebook.edit', $e->id) }}">
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.majalah.edit', $m->id) }}">
                                         Edit
                                     </a>
                           
-                                    <form action="{{ route('admin.ebook.destroy', $e->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                    <form action="{{ route('admin.majalah.destroy', $m->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -93,7 +93,7 @@
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.ebook.massDestroy') }}",
+    url: "{{ route('admin.majalah.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
