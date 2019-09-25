@@ -190,6 +190,13 @@
                             <p><span>Testimoni</span></p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('admin.gallery.index')}}" class="nav-link">
+                            <i class="far fa-id-card"></i>
+                            <p><span>Gallery</span></p>
+                        </a>
+                    </li>
                     
                 <li class="nav-item">
                     <a href="#" class="nav-link" onclick="event.preventDefault(); document.getElementById('logoutform').submit();">
