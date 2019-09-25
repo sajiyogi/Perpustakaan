@@ -57,4 +57,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('berita', 'BeritaController');
 
     Route::resource('testimoni', 'TestimoniController');
+    
+    Route::resource('gallery', 'GalleryController');
 });
