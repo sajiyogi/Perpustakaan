@@ -109,7 +109,7 @@ class BukuController extends Controller
         
         }else{
             $buku->judul = $request->get('judul');
-            $buku->pengarang = $request->get('pengarang');
+            $buku->pengarang = $request->get('pengarang ');
             $buku->penerbit = $request->get('penerbit');
             $buku->jumlah =$request->get('jumlah');
             $buku->save();
