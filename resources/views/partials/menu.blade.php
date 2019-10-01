@@ -209,7 +209,7 @@
 
                     <li class="nav-item">
                         <a href="{{route('admin.gallery.index')}}" class="nav-link">
-                            <i class="far fa-id-card"></i>
+                            <i class="far fa-images"></i>
                             <p><span>Gallery</span></p>
                         </a>
                     </li>

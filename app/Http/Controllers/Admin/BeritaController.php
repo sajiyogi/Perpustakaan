@@ -84,10 +84,7 @@ class BeritaController extends Controller
             );
 
          Berita::whereId($id)->update($form_data);
-
          return redirect()->route('admin.berita.index')->with('pesan', 'Data is Successfully updated');
-
-       
     }
 
     public function destroy($id)
