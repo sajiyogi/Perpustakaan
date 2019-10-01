@@ -89,7 +89,7 @@ class GalleryController extends Controller
         return redirect()->route('admin.gallery.index')->with('pesan', 'Data is Successfully updated');
 
     }
-
+    
     public function destroy($id)
     {
         $data = Gallery::where('id',$id)->first();

@@ -6,14 +6,18 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateBeritasTable extends Migration
 {
-   
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
     public function up()
     {
         Schema::create('beritas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('judul');
             $table->string('image');
-            $table->string('artikel');
+            $table->longText('artikel');
             $table->timestamps();
         });
     }

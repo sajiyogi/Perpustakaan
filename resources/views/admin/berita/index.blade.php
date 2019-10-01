@@ -43,12 +43,12 @@
                             <td>
                                <img src="{{URL::to('/')}}/uploadberita/{{ $row->image}}" class="img-thumbnail" width="75" />
                             </td>
-                            <td>{{ $row->judul }}</td>
-                            <td>{{ strip_tags($row->artikel)  }}</td>
+                            <td >{{ $row->judul }}</td>
+                            <td class="text-justify">{{ strip_tags($row->artikel)  }}</td>
 
                             <td>
                                 <div class="btn-group">
-                                <a class="btn btn-primary" href="">Lihat
+                                <a class="btn btn-primary" href="{{route('admin.berita.show', $row->id)}}">Lihat
                                </a>
                                     <a href="{{route('admin.berita.edit', $row->id )}}" class="btn btn-warning">Ubah
                                     </a>
