@@ -34,21 +34,51 @@
 			</div>
 		</div>
 		<div class="col-lg-3 col-6">
-			<div class="small-box bg-success">
+			<div class="small-box bg-danger">
 				<div class="inner">
-					<h3>200</h3>
+					<h3>{{ $struktur }}</h3>
 					<p>Data Anggota</p>
 				</div>
 				<div class="icon">
 					<i class="fas fa-user"></i>
 				</div>
-				<a href="#" class="small-box-footer">More Info
+				<a href="{{route('admin.struktur.index')}}" class="small-box-footer">More Info
+					<i class="fas fa-arrow-circle-right"></i>
+				</a>
+			</div>
+		</div>
+
+	<div class="col-lg-3 col-6">
+			<div class="small-box bg-warning">
+				<div class="inner">
+					<h3>{{ $majalah }}</h3>
+					<p>Data Majalah</p>
+				</div>
+				<div class="icon">
+					<i class="fas fa-book-open"></i>
+				</div>
+				<a href="{{route('admin.majalah.index')}}" class="small-box-footer">More Info
 					<i class="fas fa-arrow-circle-right"></i>
 				</a>
 			</div>
 		</div>
 		</div>
-	</div>
+
+		<div class="col-lg-3 col-6">
+			<div class="small-box bg-success">
+				<div class="inner">
+					<h3>{{ $ebook }}</h3>
+					<p>Data Ebook</p>
+				</div>
+				<div class="icon">
+					<i class="fas fa-book"></i>
+				</div>
+				<a href="{{route('admin.struktur.index')}}" class="small-box-footer">More Info
+					<i class="fas fa-arrow-circle-right"></i>
+				</a>
+			</div>
+		</div>
+		</div>
 
 	<div class="card-header"><b>Statistik Kategori Buku</b></div>
 
