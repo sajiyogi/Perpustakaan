@@ -10,7 +10,7 @@ class StoreStrukturRequest extends FormRequest
 {
     public function authorize()
     {
-        return \Gate::allows('buku_create');
+        return \Gate::allows('struktur_create');
     }
 
     public function rules()

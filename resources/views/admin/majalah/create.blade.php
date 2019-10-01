@@ -35,7 +35,13 @@
             </div>
             <div class="form-group {{ $errors->has('kategori') ? 'has-error' : '' }}">
                 <label for="kategori">Kategori</label>
-                <input type="text" id="kategori" name="kategori" class="form-control" value="{{ old('kategori', isset($majalah) ? $majalah->kategori : '') }}">
+                <select type="text" id="kategori" name="kategori" class="form-control" value="{{ old('kategori', isset($majalah) ? $majalah->kategori : '') }}">
+
+                <option value="">--Pilih--</option>
+                                <option>Berita</option>
+                                <option>Ilmu Pengetahuan</option>
+                </select>
+
                 @if($errors->has('kategori'))
                     <p class="help-block">
                         {{ $errors->first('kategori') }}

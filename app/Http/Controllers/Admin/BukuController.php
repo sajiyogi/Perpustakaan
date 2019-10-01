@@ -71,7 +71,7 @@ class BukuController extends Controller
     public function update(UpdatebukuRequest $request, buku $buku)
     {
         abort_unless(\Gate::allows('buku_edit'), 403);
-<<<<<<< HEAD
+
         $this->validate($request,[
             'judul' => 'required',
             'pengarang' => 'required',
@@ -99,8 +99,7 @@ class BukuController extends Controller
             $buku->save();
         
         }
-=======
->>>>>>> 10dba39921c7d588db7e9bc2cabe3b95837624fb
+
 
         $buku->update($request->all());
 

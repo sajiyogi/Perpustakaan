@@ -38,6 +38,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
         ]);
 });
 
+    Route::resource('statistik', 'StatistikController');
     Route::resource('fasilitas', 'FasilitasController');
     Route::resource('sejarah', 'SejarahController');
 

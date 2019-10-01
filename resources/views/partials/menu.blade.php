@@ -193,6 +193,14 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('admin.statistik.index') }}" class="nav-link">
+                             <i class="fas fa-chart-pie"></i>
+                            </i>
+                            <p><span>Statistik</span></p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{route('admin.testimoni.index')}}" class="nav-link">
                             <i class="far fa-id-card"></i>
                             <p><span>Testimoni</span></p>
