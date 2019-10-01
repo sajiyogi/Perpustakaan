@@ -44,12 +44,10 @@
                             
                             <td>
                                 <div class="btn-group">
-                                <a class="btn btn-primary" href="">Lihat
-                               </a>
                                     <a href="{{route('admin.testimoni.edit', $row->id)}}" class="btn btn-warning">Ubah
                                     </a>
                                 
-                                    <form method="POST" action=""  onclick="return confirm('Are You Sure ? ')">
+                                    <form method="POST" action="{{route('admin.testimoni.destroy', $row->id )}}"  onclick="return confirm('Are You Sure ? ')">
                                         @csrf
                                         @method('DELETE')
 
@@ -66,7 +64,7 @@
 </div>
 @endsection
 
-@section('scripts')
+<!-- @section('scripts')
 @parent
 <script>
     $(function () {
@@ -101,4 +99,4 @@
 })
 
 </script>
-@endsection
+@endsection -->

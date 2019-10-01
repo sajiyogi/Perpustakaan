@@ -39,7 +39,7 @@
 
             
             <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
+                <div class="col-md-6 text-left">
                     <button type="submit" class="btn btn-primary">{{ __('edit') }}
                     </button>
                         <a href="{{ route('admin.gallery.index') }}" class="btn btn-danger">Back</a>
