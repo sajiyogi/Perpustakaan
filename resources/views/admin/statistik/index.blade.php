@@ -145,7 +145,46 @@
 	</div>
 </div>
 
+<div class="card">
+	<div class="card-header"><b>Grafik</b></div>
+
+	<div class="card-body">
+		<div id="Chart">
+			
+		</div>
+	</div>
+</div>
+
 @endsection
 @section('scripts')
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script>
+	Highcharts.chart('Chart', {
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45
+        }
+    },
+    title: {
+        text: 'Total Buku, Majalah, dan Ebook'
+    },
+    plotOptions: {
+        pie: {
+            innerSize: 100,
+            depth: 45
+        }
+    },
+    series: [{
+        name: 'Jumlah',
+        data: [
+            ['Buku', {{ $buku }}],
+            ['Majalah', {{ $majalah }}],
+            ['Ebook', {{ $ebook }}]
+        ]
+    }]
+});
+</script>
 @parent
 @endsection
