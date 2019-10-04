@@ -1,0 +1,2 @@
+1. video online blum masuk schedule tp muncul di layar.
+2. advertise tidak muncul ketika berbarengan sm video karena sama2 highest.

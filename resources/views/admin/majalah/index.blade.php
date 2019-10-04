@@ -3,14 +3,14 @@
 
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route("admin.majalah.create") }}"> Add
+            <a class="btn btn-success" href="{{ route("admin.majalah.create") }}"> Tambah Majalah
             </a>
         </div>
     </div>
 
 <div class="card">
     <div class="card-header">
-        Majalah
+       Data Majalah
     </div>
 
     <div class="card-body">
@@ -62,18 +62,18 @@
 
                             <td>
                              
-                                    <a class="btn btn-xs btn-primary" href="/majalah/{{$m->file}}" download="{{ $m->file }}">download
+                                    <a class="btn btn-primary" href="/majalah/{{$m->file}}" download="{{ $m->file }}">download
                                     </a>
                       
                              
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.majalah.edit', $m->id) }}">
+                                    <a class="btn btn-info" href="{{ route('admin.majalah.edit', $m->id) }}">
                                         Edit
                                     </a>
                           
                                     <form action="{{ route('admin.majalah.destroy', $m->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
+                                        <input type="submit" class="btn btn-danger" value="{{ trans('global.delete') }}">
                                     </form>
                         
                             </td>
