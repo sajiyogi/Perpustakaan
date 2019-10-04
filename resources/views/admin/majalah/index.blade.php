@@ -12,6 +12,12 @@
     <div class="card-header">
        Data Majalah
     </div>
+     <!-- session pesan -->
+    @if(session('pesan'))
+                <div class="alert alert-info">
+                    <b>Success ! </b> : {{session('pesan')}}
+                </div>
+                @endif
 
     <div class="card-body">
         <div class="table-responsive">
